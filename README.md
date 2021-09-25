@@ -1,2 +1,2 @@
-# faraday-website
-Faraday website
+# faraday-Landing Page
+Official landing page for faraday
