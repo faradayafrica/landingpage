@@ -15,13 +15,13 @@
   <meta name="image" content="https://faraday.africa/img/favicon.png">
 
   <!-- Schema.org for Google -->
-  <meta itemprop="name" content="Faraday :: Home">
+  <meta itemprop="name" content="Faraday">
   <meta itemprop="description"
     content="Faraday is creating a safe space for university students to connect and learn online.">
   <meta itemprop="image" content="https://faraday.africa/img/favicon.png">
 
   <!-- Open Graph general (Facebook, Pinterest & LinkedIn) -->
-  <meta property="og:title" content="Faraday :: Home">
+  <meta property="og:title" content="Faraday">
   <meta property="og:description" content="Faraday is creating a safe space for university students to connect and learn online.">
   <meta property="og:image" content="https://faraday.africa/img/faraday-logo.svg">
   <meta property="og:url" content="https://faraday.africa/">
@@ -31,7 +31,7 @@
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary">
-  <meta property="twitter:title" content="Faraday :: Home">
+  <meta property="twitter:title" content="Faraday">
   <meta property="twitter:description"
     content="Faraday is creating a safe space for university students to connect and learn online.">
   <meta property="twitter:image:src" content="https://faraday.africa/img/faraday-logo.svg">
@@ -58,11 +58,9 @@
   <!-- stylesheet-->
   <link rel="stylesheet" href="css/style.css" id="theme-stylesheet">
 
+
   <!-- Favicon-->
   <link rel="shortcut icon" href="img/favicon.png">
-
-  <!-- Javascript validation and API file -->
-  <script src="js/main.js"></script>
 
   <!-- Tweaks for older IEs-->
   <!--[if lt IE 9]>
@@ -191,10 +189,12 @@
     <div class="container ">
       <div class="row align-items-center">
         <div class="form-holder col-lg-7 order-2 order-lg-1">
-          <form id="newsletterForm" action="#">
+          <form class="newsletterForm">
             <div class="form-group">
               <!-- <input type="text" name="name" id="name" placeholder="Enter name"> -->
               <input type="email" name="email" id="email" placeholder="Enter Your Email Address">
+              <div class="success_isActiveText" style="display: none;"></div>
+              <div class="error_isActiveText" style="display: none;"></div>
               <button type="submit" class="btn btn-primary btn-brand submit">Request access</button>
             </div>
           </form>
@@ -271,9 +271,11 @@
   <script src="js/front.js"></script>
 
   <script>
+
     setTimeout(function() {
       document.getElementById('pop-up').style.display='flex'
     }, 10000); 
+
   </script>
 </body>
 

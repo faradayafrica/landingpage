@@ -769,6 +769,33 @@ section.newsletter .form-group .submit {
 }
 
 .error_active {
+  background: #fcf6f2 !important;
+  border-bottom: 2px solid #ff5b5b !important;
+}
+
+.error_isActiveText {
+  text-align: center;
+  color: #ff5b5b !important;
+}
+
+.loader {
+  border: 3px solid white;
+  border-top: 3px solid #34db5e;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(0deg);
+  }
+}
+@keyframes grow {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Newsletter Section Mediaquery -------------------------- */
