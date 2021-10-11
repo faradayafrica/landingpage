@@ -64,77 +64,79 @@ $(function () {
 const FormButton = document.querySelector('.newsletterForm button');
 
 FormButton.addEventListener('click', e => {
-    e.preventDefault();
-    const textInput = document.querySelector('.newsletterForm input');
-    const errorEl = document.querySelector('.error_isActiveText');
-    const success = document.querySelector('success_isActiveText');
-    validate(FormButton, textInput, errorEl, success);
+  e.preventDefault();
+  const textInput = document.querySelector('.newsletterForm input');
+  const errorEl = document.querySelector('.error_isActiveText');
+  const success = document.querySelector('success_isActiveText');
+  validate(FormButton, textInput, errorEl, success);
 });
 
 const validate = async (buttonEl, inputField, errorField, successField) => {
-    const re =
+  const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (inputField.value.length == 0) {
+  if (inputField.value.length == 0) {
     inputField.classList.add('error_active');
-    errorField.innerHTML = "Email field cannot be empty";
+    errorField.innerHTML = 'Email field cannot be empty';
     errorField.style.display = 'block';
     setTimeout(() => {
-        inputField.classList.remove('error_active');
-        errorField.innerHTML = '';
-        errorField.style.display = 'none';
-    }, 3000);
-    } else if (re.test(String(inputField.value).toLowerCase()) !== true) {
+      inputField.classList.remove('error_active');
+      errorField.innerHTML = '';
+      errorField.style.display = 'none';
+    }, 1500);
+  } else if (re.test(String(inputField.value).toLowerCase()) !== true) {
     inputField.classList.add('error_active');
-    errorField.innerHTML = "Please provide a valid email address";
+    errorField.innerHTML = 'Please provide a valid email address';
     errorField.style.display = 'block';
     setTimeout(() => {
-        inputField.classList.remove('error_active');
-        errorField.innerHTML = '';
-        errorField.style.display = 'none';
-    }, 3000);
-    } else {
+      inputField.classList.remove('error_active');
+      errorField.innerHTML = '';
+      errorField.style.display = 'none';
+    }, 1500);
+  } else {
     try {
-        buttonEl.innerHTML = '';
-        buttonEl.style.display = 'flex';
-        buttonEl.style.justifyContent = 'center';
-        buttonEl.style.alignItems = 'center';
-        const newSpan = document.createElement('div');
-        buttonEl.disabled = true;
-        newSpan.classList.add('loader');
-        buttonEl.appendChild(newSpan);
-        const response = await fetch(
-          'https://newsletterfaraday.herokuapp.com/api/users/add',
-          {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: inputField.value }),
-          }
-        );
-        if (response.status !== 201) {
+      buttonEl.innerHTML = '';
+      buttonEl.style.display = 'flex';
+      buttonEl.style.justifyContent = 'center';
+      buttonEl.style.alignItems = 'center';
+      const newSpan = document.createElement('div');
+      buttonEl.disabled = true;
+      newSpan.classList.add('loader');
+      buttonEl.appendChild(newSpan);
+      const response = await fetch(
+        'https://newsletterfaraday.herokuapp.com/api/users/add',
+        {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: inputField.value }),
+        }
+      );
+      if (response.status !== 201) {
         buttonEl.innerHTML = 'Request Access';
         buttonEl.disabled = false;
         inputField.classList.add('error_active');
         errorField.innerHTML = 'This email is already subscribed';
         errorField.style.display = 'block';
         setTimeout(() => {
-            inputField.classList.remove('error_active');
-            errorField.innerHTML = '';
-            errorField.style.display = 'none';
-        }, 3000);
-        } else {
+          inputField.classList.remove('error_active');
+          errorField.innerHTML = '';
+          errorField.style.display = 'none';
+        }, 1500);
+      } else {
         inputField.value = '';
-        successField.innerHTML = "Thank you for subscribing"
-        buttonEl.innerHTML = 'Request Access';
-        }
-    } catch (e) {
-        buttonEl.innerHTML = 'Request Access';
+        buttonEl.disabled = true;
+        buttonEl.innerHTML = 'Welcome to Faraday!';
+        setTimeout(() => {
+          buttonEl.innerHTML = 'Request Access';
+        }, 4000);
         buttonEl.disabled = false;
-        errorField.innerHTML = 'Something went wrong, please try again';
+      }
+    } catch (e) {
+      buttonEl.innerHTML = 'Request Access';
+      buttonEl.disabled = false;
+      errorField.innerHTML = 'Something went wrong, please try again';
     }
-    }
+  }
 };
-
-

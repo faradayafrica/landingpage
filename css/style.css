@@ -773,6 +773,17 @@ section.newsletter .form-group .submit {
   border-bottom: 2px solid #ff5b5b !important;
 }
 
+.success_active {
+  background: var(--brand) !important;
+  border-bottom: 2px solid var(--brand) !important;
+}
+
+.success_isActiveText {
+  text-align: center;
+  color: var(--brand) !important;
+  background: var(--brand) !important;
+}
+
 .error_isActiveText {
   text-align: center;
   color: #ff5b5b !important;
@@ -947,12 +958,6 @@ footer p {
   right: 0;
 }
 
-/* Scroll Top Media Query ------------------------- */
-@media (max-width: 1199px) {
-  #scrollTop {
-    display: none !important;
-  }
-}
 
 /* =========================================
    THEMING OF BOOTSTRAP COMPONENTS
