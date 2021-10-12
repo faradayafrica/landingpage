@@ -76,22 +76,22 @@ const validate = async (buttonEl, inputField, errorField, successField) => {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (inputField.value.length == 0) {
     inputField.classList.add('error_active');
-    errorField.innerHTML = 'Email field cannot be empty';
+    errorField.innerHTML = 'No rush here, please enter an email address';
     errorField.style.display = 'block';
     setTimeout(() => {
       inputField.classList.remove('error_active');
       errorField.innerHTML = '';
       errorField.style.display = 'none';
-    }, 1500);
+    }, 3000);
   } else if (re.test(String(inputField.value).toLowerCase()) !== true) {
     inputField.classList.add('error_active');
-    errorField.innerHTML = 'Please provide a valid email address';
+    errorField.innerHTML = "You did good but please provide a valid email address";
     errorField.style.display = 'block';
     setTimeout(() => {
       inputField.classList.remove('error_active');
       errorField.innerHTML = '';
       errorField.style.display = 'none';
-    }, 1500);
+    }, 3000);
   } else {
     try {
       buttonEl.innerHTML = '';
@@ -113,17 +113,17 @@ const validate = async (buttonEl, inputField, errorField, successField) => {
           body: JSON.stringify({ email: inputField.value }),
         }
       );
-      if (response.status !== 201) {
+      if (response.status == 400) {
         buttonEl.innerHTML = 'Request Access';
         buttonEl.disabled = false;
         inputField.classList.add('error_active');
-        errorField.innerHTML = 'This email is already subscribed';
+        errorField.innerHTML = 'Ouu, thank you but you are already on the waitlist.';
         errorField.style.display = 'block';
         setTimeout(() => {
           inputField.classList.remove('error_active');
           errorField.innerHTML = '';
           errorField.style.display = 'none';
-        }, 1500);
+        }, 3000);
       } else {
         inputField.value = '';
         buttonEl.disabled = true;
